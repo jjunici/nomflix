@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
+import Message from "Components/Message";
 const Container = styled.div`
     padding: 0px 20px;
 `;
@@ -26,6 +27,7 @@ loading ? (
                 {airingToday.map(show => show.name)}
             </Section>
         )}{/* <Section></Section>은 조건이 아닌 component 이기 때문에 항상 true 로 인식 */}
+         {error && <Message color="#e74c3c;" text={error}/>}
     </Container>
 );
 

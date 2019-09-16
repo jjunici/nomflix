@@ -22,11 +22,13 @@ export default class extends React.Component{
             const {
                 data:{results:popular}
             }=await moviesApi.popular();
+         
             this.setState({
                 nowPlaying,//nowPlaying:noPlaying 이거랑 같은 문법 (변수명이 똑같기 때문에 가능한 문법)
                 upcoming,
                 popular
             })
+         
             
         }catch{
             this.setState({

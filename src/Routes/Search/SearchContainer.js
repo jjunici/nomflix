@@ -34,6 +34,7 @@ export default class SearchContainer extends React.Component{
             loading:true
         });
         try{
+            
             const {
                 data:{results:movieResults}
             }=await moviesApi.search(searchTerm);
