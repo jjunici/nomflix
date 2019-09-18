@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
+import Poster from "Components/Poster";
 const Container = styled.div`
     padding: 0px 20px;
 `;
@@ -14,17 +15,44 @@ loading ? (
     <Container>
         {topRated && topRated.length > 0 && (
             <Section title="Top Rated Show">
-                {topRated.map(show => show.name)}
+                {topRated.map(show => (
+                    <Poster 
+                        key={show.id}
+                        id={show.id} 
+                        imageUrl={show.poster_path}
+                        title={show.original_name} 
+                        rating={show.vote_average}
+                        year={show.first_air_date}
+                    />
+                ))}
             </Section>
         )}{/* <Section></Section>은 조건이 아닌 component 이기 때문에 항상 true 로 인식 */}
         {popular && popular.length > 0 && (
             <Section title="Popular Shows">
-                {popular.map(show => show.name)}
+                {popular.map(show => (
+                <Poster 
+                    key={show.id}
+                    id={show.id} 
+                    imageUrl={show.poster_path}
+                    title={show.original_name} 
+                    rating={show.vote_average}
+                    year={show.first_air_date}
+                />
+            ))}
             </Section>
         )}{/* <Section></Section>은 조건이 아닌 component 이기 때문에 항상 true 로 인식 */}
         {airingToday && airingToday.length > 0 && (
             <Section title="Airing Shows">
-                {airingToday.map(show => show.name)}
+                {airingToday.map(show => (  
+                    <Poster 
+                        key={show.id}
+                        id={show.id} 
+                        imageUrl={show.poster_path}
+                        title={show.original_name} 
+                        rating={show.vote_average}
+                        year={show.first_air_date}
+                    />
+                ))}
             </Section>
         )}{/* <Section></Section>은 조건이 아닌 component 이기 때문에 항상 true 로 인식 */}
          {error && <Message color="#e74c3c;" text={error}/>}

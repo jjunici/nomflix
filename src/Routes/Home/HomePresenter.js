@@ -17,21 +17,45 @@ loading ? (
         {nowPlaying && nowPlaying.length >0 && (
             <Section title="Now Playing">
                 {nowPlaying.map(movie=>(
-                    <Poster />
+                    <Poster 
+                        key={movie.id}
+                        id={movie.id} 
+                        imageUrl={movie.poster_path}
+                        title={movie.original_title} 
+                        rating={movie.vote_average}
+                        isMovie={true}
+                        year={movie.release_date}
+                    />
                 ))}
             </Section>
         )}{/* <Section></Section>은 조건이 아닌 component 이기 때문에 항상 true 로 인식 */}
         {upcoming && upcoming.length >0 && (
             <Section title="upcoming Movies">
                 {upcoming.map(movie=>(
-                    <Poster />
+                    <Poster 
+                       key={movie.id}
+                       id={movie.id} 
+                       imageUrl={movie.poster_path}
+                       title={movie.original_title} 
+                       rating={movie.vote_average}
+                       isMovie={true}
+                       year={movie.release_date}
+                   />
                 ))}
             </Section>
         )}{/* <Section></Section>은 조건이 아닌 component 이기 때문에 항상 true 로 인식 */}
         {popular && popular.length >0 && (
             <Section title="Popular Movies">
                 {popular.map(movie=>(
-                    <Poster />
+                    <Poster 
+                       key={movie.id}
+                       id={movie.id} 
+                       imageUrl={movie.poster_path}
+                       title={movie.original_title} 
+                       rating={movie.vote_average}
+                       isMovie={true}
+                       year={movie.release_date}
+                   />
                 ))}
             </Section>
         )}{/* <Section></Section>은 조건이 아닌 component 이기 때문에 항상 true 로 인식 */}

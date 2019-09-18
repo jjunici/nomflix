@@ -18,7 +18,7 @@ const Poster = ({id,imageUrl,title,rating,year,isMovie = false}) => (
     <Link to={isMovie? `/movie/${id}` : `/show/${id}`}>
         <Container>
             <ImageContainer >
-                <Image bgUrl={imageUrl}></Image>
+                <Image  bgUrl={imageUrl}></Image>
                 <Rating>
                     <span role="img" aria-label="rating">
                         ⭐️
