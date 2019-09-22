@@ -20,7 +20,7 @@ const Input = styled.input`
 `;
 
 const SearchPresenter = ({movieResults,tvResults,loading,error,searchTerm,handleSubmit,updateTerm}) => 
-    <Container>
+  <Container>
         <Form onSubmit={handleSubmit}>
             <Input placeholder="Search Movies or TV Shows ...." value={searchTerm} onChange={updateTerm}/>
         </Form>
@@ -62,7 +62,7 @@ const SearchPresenter = ({movieResults,tvResults,loading,error,searchTerm,handle
     )}
     {error && <Message color="#e74c3c;" text={error}/>}
     {tvResults && movieResults && tvResults.length === 0 && movieResults.length === 0 && (<Message text="Nothing found" color="#95a5a6"/>) }
-    </Container>
+  </Container>
 
 SearchPresenter.propTypes={
     movieResults:PropTypes.array,
