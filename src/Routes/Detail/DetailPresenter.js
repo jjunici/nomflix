@@ -43,6 +43,7 @@ const Cover = styled.div`
 `;
 
 const Data = styled.div`
+    position:relative;
     width:70%;
     margin-left:10px;
 
@@ -70,6 +71,27 @@ const Overview = styled.p`
     width:50%;
 `;
 
+const ProductionCompanies = styled.ul`
+  width:75%;
+  overflow:auto;
+  white-space:nowrap;
+  margin:20px 0;
+  background-color:rgba(255,255,255,0.3);
+  border-radius:5px;
+  & > h2 {
+    font-size: 14px;
+    margin: 12px;
+  }
+`
+const Production = styled.li`
+    display:inline-block;
+    margin:20px;    
+`
+
+const ProductionLogo = styled.img`
+    width:100px;
+    
+`
 
 const DetailPresenter = ({result,loading,error}) => 
     loading ? (
@@ -81,8 +103,8 @@ const DetailPresenter = ({result,loading,error}) =>
             <Cover bgImage={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : require("../../assets/noPosterSmall.png")}/>
             <Data>
                 <Title>
-                    {result.original_title 
-                         ? result.original_title 
+                    {result.title 
+                         ? result.title
                          : result.original_name}
                 </Title>
                 <ItemContainer>
@@ -105,7 +127,26 @@ const DetailPresenter = ({result,loading,error}) =>
                     </Item>
                 </ItemContainer>
                 <Overview>{result.overview}</Overview>
+                {result.production_companies && result.production_companies.length > 0 && (
+                    <ProductionCompanies>
+                       <h2>Production Companies</h2>
+                         {result.production_companies.map(company => (
+                             <Production key={company.id}>
+                                {company.logo_path ? (
+                                    <ProductionLogo 
+                                        src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
+                                       
+                                    />
+                                ) : (
+                                    company.name
+                                )}
+                             </Production>
+                         ))}
+                   </ProductionCompanies>
+                )}
+             
             </Data>
+            
         </Content>
 
     </Container>

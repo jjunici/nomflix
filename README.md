@@ -8,6 +8,7 @@ Learning React and ES6 by building a Movie Discovery App.
 - [x] TV
 - [x] Search
 - [x] Detail
+- [] Tabs inside of Movie / Show Details (Youtube Videos,Production Company)
 
 ## API Verbs
 - [x] NowPlaying
