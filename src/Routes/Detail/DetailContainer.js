@@ -12,11 +12,43 @@ export default class DetailContainer extends React.Component{
             result:null,
             error:null,
             loading:true,
-            isMovie:pathname.includes("/movie/")
+            isMovie:pathname.includes("/movie/"),
+            youtube:true,
+            companies:false,
+            countries:false
+
            
         }
     }
-  
+    tabsChange = (event) =>{
+        const {
+            target:
+            {
+                innerText:value
+            }
+        } = event;//비구조화 할당 
+
+        if(value==="Youtube"){
+            this.setState({
+                youtube:true,
+                companies:false,
+                countries:false
+            });
+        }else if(value==="Production Companies"){
+            this.setState({
+                youtube:false,
+                companies:true,
+                countries:false
+            });
+            
+        }else if(value==="Production Countries"){
+            this.setState({
+                youtube:false,
+                companies:false,
+                countries:true
+            });
+        }
+    };
     async componentDidMount(){
         const {
             match:{
@@ -54,13 +86,17 @@ export default class DetailContainer extends React.Component{
 
     }
     render(){
-        const {result,error,loading}=this.state;
-        console.log(this.state);
+        const {result,error,loading,youtube,companies,countries}=this.state;
+  
         return(
             <DetailPresenter
                 result={result}
                 error={error}
                 loading={loading}
+                youtube={youtube}
+                companies={companies}
+                countries={countries}
+                tabsChange={this.tabsChange}
             />
         )
     }

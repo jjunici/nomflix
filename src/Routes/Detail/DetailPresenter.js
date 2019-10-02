@@ -92,8 +92,30 @@ const ProductionLogo = styled.img`
     width:100px;
     
 `
+const Tabs = styled.ul`
+    display:flex;
+    margin-top 10px;
 
-const DetailPresenter = ({result,loading,error}) => 
+    
+`;
+const TabsItems = styled.li`
+    background-color: rgba(255, 255, 255, 0.2);
+    box-sizing: border-box;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    border-bottom: none;
+    padding: 10px;
+    transition: transform 0.3s ease-in-out 0s;
+
+`;
+const TabsResult = styled.div`
+    width:100%;
+    box-sizing:border-box;
+    padding:30px 0px;
+`;
+
+const DetailPresenter = ({result,loading,error,youtube,companies,countries,tabsChange}) => 
     loading ? (
         <Loader /> 
     ) : (
@@ -127,24 +149,34 @@ const DetailPresenter = ({result,loading,error}) =>
                     </Item>
                 </ItemContainer>
                 <Overview>{result.overview}</Overview>
-                {result.production_companies && result.production_companies.length > 0 && (
-                    <ProductionCompanies>
-                       <h2>Production Companies</h2>
-                         {result.production_companies.map(company => (
-                             <Production key={company.id}>
-                                {company.logo_path ? (
-                                    <ProductionLogo 
-                                        src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
-                                       
-                                    />
-                                ) : (
-                                    company.name
-                                )}
-                             </Production>
-                         ))}
-                   </ProductionCompanies>
-                )}
-             
+                <Tabs>
+                    <TabsItems onClick={tabsChange}>Youtube</TabsItems>
+                    <TabsItems onClick={tabsChange}>Production Companies</TabsItems>
+                    <TabsItems onClick={tabsChange}>Production Countries</TabsItems>
+                </Tabs>
+         
+                <TabsResult>
+                        {youtube && (<span>나는 유투브</span>)}
+                        {companies && 
+                        ( result.production_companies && result.production_companies.length > 0 && (
+                            <ProductionCompanies>
+                                <h2>Production Companies</h2>
+                                {result.production_companies.map(company => (
+                                    <Production key={company.id}>
+                                        {company.logo_path ? (
+                                            <ProductionLogo 
+                                                src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
+                                                
+                                            />
+                                        ) : (
+                                            company.name
+                                        )}
+                                    </Production>
+                                ))}
+                            </ProductionCompanies>
+                        ))}
+                        {countries && (<span>나는 나라다</span>)}
+                </TabsResult>
             </Data>
             
         </Content>
