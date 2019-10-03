@@ -70,6 +70,12 @@ const Overview = styled.p`
     line-height: 1.5;
     width:50%;
 `;
+const VideoRink = styled.a`
+    display:block;
+    color:rgba(255,255,255,0.8);
+    font-size:16px;
+    margin:10px;
+`
 
 const ProductionCompanies = styled.ul`
   width:75%;
@@ -82,16 +88,27 @@ const ProductionCompanies = styled.ul`
     font-size: 14px;
     margin: 12px;
   }
-`
+`;
 const Production = styled.li`
     display:inline-block;
     margin:20px;    
-`
+`;
 
 const ProductionLogo = styled.img`
     width:100px;
     
-`
+`;
+
+const Countries = styled.span`
+    display:inline-block;
+    background-color:rgba(0,0,0,0.5);
+    text-align:center;
+    font-size:16px;
+    color:rgba(255,255,255,0.8);
+    padding:10px;
+    border-radius:5px;
+    margin:3px;
+`;
 const Tabs = styled.ul`
     display:flex;
     margin-top 10px;
@@ -109,11 +126,14 @@ const TabsItems = styled.li`
     transition: transform 0.3s ease-in-out 0s;
 
 `;
+
+
 const TabsResult = styled.div`
     width:100%;
     box-sizing:border-box;
     padding:30px 0px;
 `;
+
 
 const DetailPresenter = ({result,loading,error,youtube,companies,countries,tabsChange}) => 
     loading ? (
@@ -156,7 +176,18 @@ const DetailPresenter = ({result,loading,error,youtube,companies,countries,tabsC
                 </Tabs>
          
                 <TabsResult>
-                        {youtube && (<span>나는 유투브</span>)}
+                    
+
+                        {youtube &&
+                        ( result.videos.results.length > 0 ? (
+                                result.videos.results.map((video,index)=>
+                                    <VideoRink key={index} target="_blank" href={`https://www.youtube.com/watch?v=${video.key}`}>
+                                        {video.name}
+                                    </VideoRink>
+                                )
+                            ) : (
+                                <span>트레일러 영상이 존재 하지 않습니다.</span>
+                        ))}
                         {companies && 
                         ( result.production_companies && result.production_companies.length > 0 && (
                             <ProductionCompanies>
@@ -175,7 +206,16 @@ const DetailPresenter = ({result,loading,error,youtube,companies,countries,tabsC
                                 ))}
                             </ProductionCompanies>
                         ))}
-                        {countries && (<span>나는 나라다</span>)}
+                        {countries && 
+                        ( result.production_countries && result.production_countries.length > 0 && (
+                                result.production_countries.map((country,index) => (
+                                    <Countries key={index}>
+                                        {country.name}
+                                    </Countries>
+                                ))
+                                
+                            )
+                        )}
                 </TabsResult>
             </Data>
             

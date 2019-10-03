@@ -16,8 +16,6 @@ export default class DetailContainer extends React.Component{
             youtube:true,
             companies:false,
             countries:false
-
-           
         }
     }
     tabsChange = (event) =>{
